@@ -50,6 +50,23 @@ Welcome to the complete documentation for the Flutter Offline-First Attendance A
 - Next steps
 - Completion status
 
+### File Structure
+
+**[FILE_STRUCTURE.md](FILE_STRUCTURE.md)** 📁
+- Complete directory tree
+- File purpose reference
+- Key files to understand
+- Navigation guide
+
+### Setup Checklist
+
+**[CHECKLIST.md](CHECKLIST.md)** ✅
+- Prerequisites installation
+- Step-by-step setup
+- Deployment checklist
+- Testing checklist
+- Pre-launch verification
+
 ---
 
 ## 💻 Application Documentation
