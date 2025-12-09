@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../providers/service_providers.dart';
+import 'home_page.dart';
 
 /// Login page with Google OAuth integration
 class LoginPage extends ConsumerStatefulWidget {
@@ -127,9 +128,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       final useCase = ref.read(googleSignInUseCaseProvider);
       await useCase.execute(idToken);
 
-      // Navigate to home page
+      // Success - navigate to home page
       if (mounted) {
-        Navigator.of(context).pushReplacementNamed('/home');
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => const HomePage()),
+        );
       }
     } catch (e) {
       setState(() {

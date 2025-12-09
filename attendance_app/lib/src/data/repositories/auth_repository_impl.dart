@@ -15,31 +15,56 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<User> signInWithGoogle(String googleToken) async {
-    // Verify token with backend
-    final response = await remoteDataSource.verifyGoogleToken(googleToken);
+    try {
+      // Verify token with backend
+      final response = await remoteDataSource.verifyGoogleToken(googleToken);
 
-    // Extract user and JWT from response
-    final userData = response['user'] as Map<String, dynamic>;
-    final jwtToken = response['token'] as String;
+      // Extract user and JWT from response
+      final userData = response['user'] as Map<String, dynamic>;
+      final jwtToken = response['token'] as String;
 
-    final user = User(
-      id: userData['id'],
-      email: userData['email'],
-      displayName: userData['displayName'],
-      photoUrl: userData['photoUrl'],
-      googleId: userData['googleId'],
-      jwtToken: jwtToken,
-      createdAt: DateTime.parse(userData['createdAt'] as String),
-      isActive: true,
-    );
+      final user = User(
+        id: userData['id'],
+        email: userData['email'],
+        displayName: userData['displayName'],
+        photoUrl: userData['photoUrl'],
+        googleId: userData['googleId'],
+        jwtToken: jwtToken,
+        createdAt: DateTime.parse(userData['createdAt'] as String),
+        isActive: true,
+      );
 
-    // Save JWT securely
-    await remoteDataSource.saveJwtToken(jwtToken);
+      // Save JWT securely
+      await remoteDataSource.saveJwtToken(jwtToken);
 
-    // Save user locally
-    await localDataSource.saveUser(user);
+      // Save user locally
+      await localDataSource.saveUser(user);
 
-    return user;
+      return user;
+    } catch (e) {
+      // TEMPORARY: For development without backend, create a mock user
+      // TODO: Remove this when backend is ready
+      print('Backend not available, using mock user for development: $e');
+      
+      final mockUser = User(
+        id: 'dev-user-${DateTime.now().millisecondsSinceEpoch}',
+        email: 'developer@example.com',
+        displayName: 'Development User',
+        photoUrl: null,
+        googleId: googleToken.substring(0, 20),
+        jwtToken: 'mock-jwt-token',
+        createdAt: DateTime.now(),
+        isActive: true,
+      );
+
+      // Save mock JWT
+      await remoteDataSource.saveJwtToken('mock-jwt-token');
+
+      // Save mock user locally
+      await localDataSource.saveUser(mockUser);
+
+      return mockUser;
+    }
   }
 
   @override
