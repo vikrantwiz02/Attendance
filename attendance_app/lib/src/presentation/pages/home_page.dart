@@ -4,6 +4,8 @@ import 'package:geolocator/geolocator.dart';
 import '../../domain/models/attendance_log.dart';
 import '../providers/service_providers.dart';
 import '../widgets/sync_status_banner.dart';
+import 'attendance_history_page.dart';
+import 'profile_page.dart';
 
 /// Main home page with clock in/out functionality
 class HomePage extends ConsumerStatefulWidget {
@@ -38,13 +40,21 @@ class _HomePageState extends ConsumerState<HomePage> {
           IconButton(
             icon: const Icon(Icons.history),
             onPressed: () {
-              // Navigate to attendance history
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const AttendanceHistoryPage(),
+                ),
+              );
             },
           ),
           IconButton(
             icon: const Icon(Icons.person),
             onPressed: () {
-              // Navigate to profile
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const ProfilePage(),
+                ),
+              );
             },
           ),
         ],
