@@ -1,6 +1,6 @@
 import '../datasources/local_data_source.dart';
 import '../datasources/remote_data_source.dart';
-import '../models/user.dart';
+import '../../domain/models/user.dart';
 import '../../domain/repositories/auth_repository.dart';
 
 /// Implementation of AuthRepository

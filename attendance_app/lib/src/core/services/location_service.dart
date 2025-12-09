@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:geolocator/geolocator.dart';
 import 'package:logger/logger.dart';
 
@@ -131,6 +132,3 @@ class LocationService {
 
   double _toRadians(double degrees) => degrees * (math.pi / 180);
 }
-
-// For math operations
-import 'dart:math' as math;

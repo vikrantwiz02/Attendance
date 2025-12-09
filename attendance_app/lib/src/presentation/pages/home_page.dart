@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
-import '../../data/models/attendance_log.dart';
+import '../../domain/models/attendance_log.dart';
 import '../providers/service_providers.dart';
 import '../widgets/sync_status_banner.dart';
 

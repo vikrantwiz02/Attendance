@@ -5,15 +5,15 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import '../data/datasources/local_data_source.dart';
-import '../data/datasources/remote_data_source.dart';
-import '../data/repositories/attendance_repository_impl.dart';
-import '../data/repositories/auth_repository_impl.dart';
-import '../core/services/sync_engine.dart';
-import '../core/services/location_service.dart';
-import '../core/services/notification_service.dart';
-import '../domain/usecases/auth_usecases.dart';
-import '../domain/usecases/clock_action_usecase.dart';
+import '../../data/datasources/local_data_source.dart';
+import '../../data/datasources/remote_data_source.dart';
+import '../../data/repositories/attendance_repository_impl.dart';
+import '../../data/repositories/auth_repository_impl.dart';
+import '../../core/services/sync_engine.dart';
+import '../../core/services/location_service.dart';
+import '../../core/services/notification_service.dart';
+import '../../domain/usecases/auth_usecases.dart';
+import '../../domain/usecases/clock_action_usecase.dart';
 
 // ============= Core Services =============
 

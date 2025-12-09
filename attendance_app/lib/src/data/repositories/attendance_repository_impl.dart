@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import '../datasources/local_data_source.dart';
 import '../datasources/remote_data_source.dart';
-import '../models/attendance_log.dart';
+import '../../domain/models/attendance_log.dart';
 import '../../domain/repositories/attendance_repository.dart';
 
 /// Implementation of AttendanceRepository

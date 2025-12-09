@@ -1,8 +1,8 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import '../models/attendance_log.dart';
-import '../models/geofence.dart';
-import '../models/leave_request.dart';
-import '../models/user.dart';
+import '../../domain/models/attendance_log.dart';
+import '../../domain/models/geofence.dart';
+import '../../domain/models/leave_request.dart';
+import '../../domain/models/user.dart';
 
 /// Local data source using Hive for offline-first storage
 class LocalDataSource {
@@ -119,13 +119,14 @@ class LocalDataSource {
   /// Save geofences list
   Future<void> saveGeofences(List<Geofence> geofences) async {
     final geofenceList = geofences.map((g) => g.toJson()).toList();
-    await _geofenceBox.put('geofences', geofenceList);
+    await _geofenceBox.put('geofences', {'list': geofenceList});
   }
 
   /// Get all geofences
   Future<List<Map<String, dynamic>>> getGeofences() async {
-    final geofenceList = _geofenceBox.get('geofences', defaultValue: []);
-    return List<Map<String, dynamic>>.from(geofenceList ?? []);
+    final data = _geofenceBox.get('geofences', defaultValue: {'list': []}) as Map;
+    final geofenceList = data['list'] as List? ?? [];
+    return List<Map<String, dynamic>>.from(geofenceList);
   }
 
   // ============= LEAVE REQUESTS =============

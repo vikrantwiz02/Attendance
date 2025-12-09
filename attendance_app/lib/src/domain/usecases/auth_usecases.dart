@@ -1,5 +1,5 @@
 import '../repositories/auth_repository.dart';
-import '../../data/models/user.dart';
+import '../models/user.dart';
 
 /// Use case for Google OAuth sign in
 class GoogleSignInUseCase {

@@ -6,7 +6,7 @@ part 'attendance_log.g.dart';
 enum AttendanceActionType {
   clockIn,
   clockOut,
-  break,
+  breakTime,
 }
 
 enum SyncStatus {

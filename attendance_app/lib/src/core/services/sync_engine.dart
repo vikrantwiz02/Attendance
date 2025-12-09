@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
-import '../datasources/local_data_source.dart';
-import '../datasources/remote_data_source.dart';
-import '../models/sync_response.dart';
+import '../../data/datasources/local_data_source.dart';
+import '../../data/datasources/remote_data_source.dart';
+import '../../domain/models/sync_response.dart';
 
 /// Synchronization Engine for offline-first architecture
 /// Manages the bidirectional sync between local Hive database and MongoDB backend
@@ -14,7 +14,7 @@ class SyncEngine {
   final Connectivity connectivity;
   final Logger logger;
 
-  late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
   
   // Stream controllers for sync status
   final _syncStatusController = StreamController<SyncStatus>.broadcast();
@@ -44,9 +44,9 @@ class SyncEngine {
 
     // Listen to connectivity changes
     _connectivitySubscription = connectivity.onConnectivityChanged.listen(
-      (result) {
+      (ConnectivityResult result) {
         final wasConnected = _isConnected;
-        _isConnected = result.contains(ConnectivityResult.none) == false;
+        _isConnected = result != ConnectivityResult.none;
         
         logger.i('Connectivity changed: $_isConnected');
 

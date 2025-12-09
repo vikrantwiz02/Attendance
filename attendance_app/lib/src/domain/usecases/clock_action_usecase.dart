@@ -1,4 +1,4 @@
-import '../../data/models/attendance_log.dart';
+import '../models/attendance_log.dart';
 import '../repositories/attendance_repository.dart';
 import 'package:uuid/uuid.dart';
 
