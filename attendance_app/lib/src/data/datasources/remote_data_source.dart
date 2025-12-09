@@ -6,7 +6,8 @@ class RemoteDataSource {
   final Dio dio;
   final FlutterSecureStorage secureStorage;
   
-  static const String _baseUrl = 'https://api.attendance-app.com';
+  // Use localhost for development (iOS simulator uses localhost, Android uses 10.0.2.2)
+  static const String _baseUrl = 'http://localhost:3000';
   static const String _jwtTokenKey = 'jwt_token';
 
   RemoteDataSource({
