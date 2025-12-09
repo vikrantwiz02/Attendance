@@ -49,5 +49,18 @@
 	<string>This app needs your location to track attendance and verify you are within the designated work area when clocking in/out.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This app needs your location to track attendance and verify you are within the designated work area when clocking in/out.</string>
+	<key>GIDClientID</key>
+	<string>593058483549-3qdocillv0iuqr3n09jgtjokjm3oivjq.apps.googleusercontent.com</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.593058483549-3qdocillv0iuqr3n09jgtjokjm3oivjq</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

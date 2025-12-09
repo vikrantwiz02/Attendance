@@ -102,16 +102,17 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     });
 
     try {
-      // Initialize Google Sign In
+      // Initialize Google Sign In with proper client ID
       final GoogleSignIn googleSignIn = GoogleSignIn(
         scopes: ['email', 'profile'],
+        clientId: '593058483549-3qdocillv0iuqr3n09jgtjokjm3oivjq.apps.googleusercontent.com',
       );
 
       // Trigger the sign-in flow
       final account = await googleSignIn.signIn();
 
       if (account == null) {
-        // User cancelled
+        // User cancelled the sign-in
         setState(() => _isLoading = false);
         return;
       }
@@ -121,10 +122,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       final idToken = googleAuth.idToken;
 
       if (idToken == null) {
-        throw Exception('Failed to get ID token');
+        throw Exception('Failed to get ID token from Google');
       }
 
-      // Use the use case to sign in
+      // Use the use case to sign in with backend
       final useCase = ref.read(googleSignInUseCaseProvider);
       await useCase.execute(idToken);
 

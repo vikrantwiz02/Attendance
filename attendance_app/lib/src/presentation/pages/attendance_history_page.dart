@@ -32,8 +32,8 @@ class _AttendanceHistoryPageState extends ConsumerState<AttendanceHistoryPage> {
     
     final repo = ref.read(attendanceRepositoryProvider);
     final logs = await repo.getAttendanceHistory(
-      startDate: _startDate,
-      endDate: _endDate,
+      fromDate: _startDate ?? DateTime.now().subtract(const Duration(days: 7)),
+      toDate: _endDate ?? DateTime.now(),
     );
     
     setState(() {
@@ -163,9 +163,9 @@ class _AttendanceHistoryPageState extends ConsumerState<AttendanceHistoryPage> {
         children: [
           Text('Time: $time'),
           if (log.latitude != null && log.longitude != null)
-            Text('Location: ${log.latitude!.toStringAsFixed(4)}, ${log.longitude!.toStringAsFixed(4)}'),
-          if (log.remarks != null && log.remarks!.isNotEmpty)
-            Text('Remarks: ${log.remarks}'),
+            Text('Location: ${log.latitude.toStringAsFixed(4)}, ${log.longitude.toStringAsFixed(4)}'),
+          if (log.notes != null && log.notes!.isNotEmpty)
+            Text('Notes: ${log.notes}'),
         ],
       ),
       trailing: _buildSyncStatus(log),
@@ -178,6 +178,8 @@ class _AttendanceHistoryPageState extends ConsumerState<AttendanceHistoryPage> {
         return Icon(Icons.cloud_done, color: Colors.green[700]);
       case SyncStatus.pending:
         return Icon(Icons.cloud_upload, color: Colors.orange[700]);
+      case SyncStatus.syncing:
+        return Icon(Icons.cloud_sync, color: Colors.blue[700]);
       case SyncStatus.failed:
         return Icon(Icons.cloud_off, color: Colors.red[700]);
     }
